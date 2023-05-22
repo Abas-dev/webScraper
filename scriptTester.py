@@ -1,5 +1,5 @@
 from mainProject.resy import Resy
-
-open = Resy()
+from mainProject.yelp import Yelp
+open = Yelp()
  
-open.run('https://resy.com/cities/ny/il-fiorista')
+open.run('https://www.yelp.com/reservations/blue-india-atlanta','12:00 pm',month_year='June 2023')

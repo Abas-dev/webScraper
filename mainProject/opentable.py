@@ -34,7 +34,7 @@ class Opentable:
 
         monthYear = month_year
         found_month_year = False
-
+ 
         while not found_month_year:
             getMonthYear = driver.find_element(By.XPATH,'//*[@id="DtpForm1"]/div/div[2]/div/div[3]/div[2]/div/div/div[2]/div[1]/div[1]').text
             if monthYear == getMonthYear:
@@ -53,7 +53,7 @@ class Opentable:
         tdd = Select(timeDropdown)
 
         guest_no = guest - 1
-        gdd.select_by_index(guest_no)
+        gdd.select_by_index(guest_no)  #hhh
         
         tdd.select_by_visible_text(time)
 

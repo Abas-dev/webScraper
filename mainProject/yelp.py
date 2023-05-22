@@ -57,5 +57,4 @@ class Yelp:
         ogd.select_by_index(geust_no)
 
 
-
         sleep(3)

@@ -17,8 +17,6 @@ class Resy:
     day = str(datetime.now().day)
     monthYear = month +' '+ year
     monthDayYear = month+day+','+year
-    current_time = datetime.now().strftime("%I:%M %p").lstrip("0")
-    time=current_time
 
     def run(self,path,guest=1,month_year=monthYear,month_day_year=monthDayYear):
         

@@ -1,5 +1,5 @@
 from time import sleep
-from datetime import datetime
+from datetime import datetime,timedelta
 import calendar
 
 from selenium import webdriver
@@ -18,10 +18,12 @@ class Sevenrooms:
     day = str(theDay)
     monthYear = month +' '+ year
     monthDayYear = month+day+','+year
-    current_time = datetime.now().strftime("%I:%M %p").lstrip("0")
-    time=current_time
+    current_time = datetime.now()
+    rounded_time = current_time + timedelta(minutes=30 - current_time.minute % 30)
+    rounded_time = rounded_time.replace(second=0, microsecond=0).strftime("%I:%M %p").lstrip("0").lower()
 
-    def run(self,path,time,day=day,guest=1,month_year=monthYear):
+
+    def run(self,path,time=rounded_time,day=day,guest=1,month_year=monthYear):
         driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
 
         driver.get(path)
@@ -62,9 +64,6 @@ class Sevenrooms:
         sleep(8)
 
         getResult = driver.find_elements(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div/div[1]/div[1]/div[3]')
-
-        for i in getResult:
-            print(i.text)
 
         if len(getResult) > 0:
             for a in getResult:

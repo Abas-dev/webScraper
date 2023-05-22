@@ -9,3 +9,10 @@ monthDayYear=month,day+',',year
 current_time = datetime.now().strftime("%I:%M %p")
 time=current_time
 
+day = '1'
+
+day = int(day) +1
+
+day = str(day)
+
+print (type(day))

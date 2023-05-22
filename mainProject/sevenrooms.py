@@ -14,7 +14,8 @@ class Sevenrooms:
     monthNum = datetime.now().month
     year = str(datetime.now().year)
     month = calendar.month_name[monthNum]
-    day = str(datetime.now().day)
+    theDay = datetime.now().day
+    day = str(theDay)
     monthYear = month +' '+ year
     monthDayYear = month+day+','+year
     current_time = datetime.now().strftime("%I:%M %p").lstrip("0")
@@ -44,19 +45,19 @@ class Sevenrooms:
                 print('arrow clicked')
         sleep(2)
 
-        openGuestField = driver.find_element(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div[2]/div/div').click()
+        driver.find_element(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div[2]/div/div').click()
         numberOfGuest = str(guest)
-        getGuestNumber = driver.find_element(By.XPATH,f"//button[text()='{numberOfGuest}']").click()
+        driver.find_element(By.XPATH,f"//button[text()='{numberOfGuest}']").click()
 
         sleep(2)
 
-        openTimeField = driver.find_element(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div[3]/div/div').click()
+        driver.find_element(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div[3]/div/div').click()
         selectedTime = time
-        getTime = driver.find_element(By.XPATH,f"//button[text()='{selectedTime}']").click()
+        driver.find_element(By.XPATH,f"//button[text()='{selectedTime}']").click()
 
         sleep(2)    
 
-        bookBtn = driver.find_element(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div[4]/div/button').click()
+        driver.find_element(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div[4]/div/button').click()
 
         sleep(8)
 
@@ -64,3 +65,14 @@ class Sevenrooms:
 
         for i in getResult:
             print(i.text)
+
+        if len(getResult) > 0:
+            for a in getResult:
+                print('day for resevation',day)
+                print('time for reservations',a.text)
+                break
+        else:
+            self.theDay = self.theDay + 1 
+            day = str(self.theDay)
+            self.run(day=day,path=path,time=time)
+            driver.refresh()     

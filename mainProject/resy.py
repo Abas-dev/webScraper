@@ -64,7 +64,16 @@ class Resy:
 
         sleep(2)
 
-        reseveationsTime = driver.find_elements(By.XPATH,'//*[@id="page-content"]/venue-page/div/div[1]/div[1]/div[2]/div[3]')
+        reseveationsTime = driver.find_elements(By.XPATH,'//*[@id="page-content"]/venue-page/div/div[1]/div[1]/div[2]/div[3]/div')
 
-        for i in reseveationsTime:
-            print(i.text)
+
+        if len(reseveationsTime) > 0:
+            for a in reseveationsTime:
+                
+                print('time for reservations',a.text)
+                break
+        else:
+            self.theDay = self.theDay + 1 
+            day = str(self.theDay)
+            self.run(day=day,path=path)
+            driver.refresh()

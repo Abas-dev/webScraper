@@ -14,7 +14,8 @@ class Opentable:
     monthNum = datetime.now().month
     year = str(datetime.now().year)
     month = calendar.month_name[monthNum]
-    day = str(datetime.now().day)
+    theDay = datetime.now().day
+    day = str(theDay)
     monthYear = month +' '+ year
     monthDayYear = month+day+','+year
     current_time = datetime.now().strftime("%I:%M %p").lstrip("0")
@@ -65,7 +66,15 @@ class Opentable:
 
         print(getAvailTime)
 
-        for a in getAvailTime:
-            print(a.text)
-
+        if len(getAvailTime) > 0:
+            for a in getAvailTime:
+                print('day for resevation',day)
+                print('time for reservations',a.text)
+                break
+        else:
+            self.theDay = self.theDay + 1 
+            day = str(self.theDay)
+            self.run(day=day,path=path,time=time)
+            driver.refresh()
+                
         sleep(5)

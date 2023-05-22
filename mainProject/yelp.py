@@ -55,6 +55,20 @@ class Yelp:
         ogd = Select(openGeuest)
         geust_no = guest - 1
         ogd.select_by_index(geust_no)
+        
+        sleep(3)
 
+        availTime = driver.find_elements(By.XPATH,'//*[@id="react-mount-search-widget"]/div/div/div[2]/div/div[1]/ul/li/div/div/div[2]')
+
+        if len(availTime) > 0:
+            for a in availTime:
+                print('day for resevation',day)
+                print('time for reservations',a.text)
+                break
+        else:
+            self.theDay = self.theDay + 1 
+            day = str(self.theDay)
+            self.run(day=day,path=path,time=time)
+            driver.refresh()
 
         sleep(3)

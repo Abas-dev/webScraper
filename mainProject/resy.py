@@ -9,7 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.select import Select
 
-class resy:
+class Resy:
 
     monthNum = datetime.now().month
     year = str(datetime.now().year)

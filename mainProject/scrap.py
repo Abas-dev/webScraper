@@ -167,6 +167,47 @@ class Scapper:
         for i in getResult:
             print(i.text)
 
+
+    def yelp(self,path,time,day=day,guest=1,month_year=monthYear):
+        driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
+        driver.get(path)
+
+        sleep(2)
+        driver.find_element(By.XPATH,'//div[contains(@class, "DayPickerInput")]').click()
+
+        foundMonthYear = False
+        sleep(2)
+
+        while not foundMonthYear:
+            sleep(2)
+            monthYear = month_year
+            getMonthYear = driver.find_element(By.XPATH,'//*[@id="react-mount-search-widget"]/div/div/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[2]/div/div[1]/div').text
+
+            if monthYear == getMonthYear: 
+                theDay = day
+                driver.find_element(By.XPATH,f'//p[text()="{theDay}"]').click()
+                foundMonthYear = True
+                sleep(2)
+            else:
+                nextBtn = driver.find_element(By.XPATH, '//span[contains(@class, "DayPicker-NavButton DayPicker-NavButton--next")]')
+                nextBtn.click()
+                sleep(2)
+
+        openTime = driver.find_element(By.XPATH,'(//select[contains(@class, "yselect-with-icon search-widget_input--select")])[1]')
+        otd = Select(openTime)
+        otd.select_by_visible_text(time)
+        sleep(2)
+
+        openGeuest = driver.find_element(By.XPATH,'(//select[contains(@class, "yselect-with-icon search-widget_input--select")])[2]')
+        ogd = Select(openGeuest)
+        geust_no = guest - 1
+        ogd.select_by_index(geust_no)
+
+
+
+        sleep(3)
+        
+
 w = Scapper()
 #w.openTable('https://www.opentable.com/restref/client/?rid=97249','July 2023',20,'9:00 pm',8)
 #w.resy('https://resy.com/cities/ny/il-fiorista',5,'June 2023','June 7, 2023.')
@@ -174,4 +215,5 @@ w = Scapper()
 
 #w.openTable('https://www.opentable.com/restref/client/?rid=97249','10:00 pm')
 #w.resy('https://resy.com/cities/ny/il-fiorista')
-w.sevenrooms('https://www.sevenrooms.com/reservations/jams','9:00 pm')
+#w.sevenrooms('https://www.sevenrooms.com/reservations/jams','9:00 pm')
+w.yelp(' https://www.yelp.com/reservations/blue-india-atlanta','11:30 am')

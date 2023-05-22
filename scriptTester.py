@@ -1,5 +1,5 @@
-from .mainProject.opentable import Opentable
+from mainProject.resy import Resy
 
-open = Opentable()
+open = Resy()
  
-open.run()
+open.run('https://resy.com/cities/ny/il-fiorista')

@@ -15,7 +15,8 @@ class Yelp:
     monthNum = datetime.now().month
     year = str(datetime.now().year)
     month = calendar.month_name[monthNum]
-    day = str(datetime.now().day)
+    theDay = datetime.now().day
+    day = str(theDay)
     monthYear = month +' '+ year
     monthDayYear = month+day+','+year
     current_time = datetime.now()
@@ -72,11 +73,17 @@ class Yelp:
 
             availTime = driver.find_elements(By.XPATH,'//*[@id="react-mount-search-widget"]/div/div/div[2]/div/div[1]/ul/li/div/div/div[2]')
 
+            fullData = []
+
             if len(availTime) > 0:
                 for a in availTime:
-                    print('day for resevation',day)
-                    print('time for reservations',a.text)
+                    data = a.text
+                    times = data.split('\n')
+                    fullData.extend(times)
                     break
+                    
+                print('day availabe for resevation: ',day+', '+month_year)
+                print('time available for reservations: ',fullData)
             else:
                 self.theDay = self.theDay + 1 
                 day = str(self.theDay)

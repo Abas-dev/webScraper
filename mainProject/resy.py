@@ -15,7 +15,8 @@ class Resy:
     monthNum = datetime.now().month
     year = str(datetime.now().year)
     month = calendar.month_name[monthNum]
-    day = str(datetime.now().day)
+    theDay = datetime.now().day
+    day = str(theDay)
     monthYear = month +' '+ year
     monthDayYear = month+day+','+year
 
@@ -78,12 +79,17 @@ class Resy:
 
             reseveationsTime = self.driver.find_elements(By.XPATH,'//*[@id="page-content"]/venue-page/div/div[1]/div[1]/div[2]/div[3]/div')
 
+            fullData = []
 
             if len(reseveationsTime) > 0:
                 for a in reseveationsTime:
-                    
-                    print('time for reservations',a.text)
+                    data = a.text
+                    times = [time for time in data.split('\n') if time != 'Res']
+                    fullData.extend(times)
                     break
+                    
+                print('day availabe for resevation: ',self.day+', '+self.month )
+                print('time available for reservations: ',fullData)
             else:
                 self.theDay = self.theDay + 1 
                 day = str(self.theDay)

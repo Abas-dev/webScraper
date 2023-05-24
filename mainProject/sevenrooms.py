@@ -77,12 +77,18 @@ class Sevenrooms:
             sleep(8)
 
             getResult = self.driver.find_elements(By.XPATH,'//*[@id="dining-widget-app"]/div/div/div[1]/div[2]/div/div[1]/div[1]/div[3]')
+            
+            fullData = []
 
             if len(getResult) > 0:
                 for a in getResult:
-                    print('day for resevation',day)
-                    print('time for reservations',a.text)
+                    data = a.text
+                    times = data.split('\n')
+                    fullData.extend(times)
                     break
+                    
+                print('day availabe for resevation: ',day+', '+month_year)
+                print('time available for reservations: ',fullData)
             else:
                 self.theDay = self.theDay + 1 
                 day = str(self.theDay)

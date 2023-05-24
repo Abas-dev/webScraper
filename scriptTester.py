@@ -1,8 +1,9 @@
 from mainProject.resy import Resy #dn 
 from mainProject.sevenrooms import Sevenrooms # dn 
-from mainProject.yelp import Yelp
+from mainProject.yelp import Yelp # dn 
+
 from mainProject.opentable import Opentable # dn 
 
-open = Yelp()
+open = Resy()
  
-open.run('https://www.ylp.com/reservations/blue-india-atlanta')
+open.run('https://resy.com/cities/ny/il-fiorista')

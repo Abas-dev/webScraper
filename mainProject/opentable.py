@@ -82,11 +82,17 @@ class Opentable:
 
             print(getAvailTime)
 
+            fullData = []
+
             if len(getAvailTime) > 0:
                 for a in getAvailTime:
-                    print('day for resevation',day)
-                    print('time for reservations',a.text)
+                    data = a.text
+                    times = data.split('\n')
+                    fullData.extend(times)
                     break
+                    
+                print('day availabe for resevation: ',day+', '+month_year)
+                print('time available for reservations: ',fullData)
             else:
                 self.theDay = self.theDay + 1 
                 day = str(self.theDay)

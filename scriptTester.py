@@ -6,4 +6,4 @@ from mainProject.opentable import Opentable # dn
 
 open = Resy()
  
-open.run('https://resy.com/cities/ny/il-fiorista')
+open.run('https://resy.com/cities/ny/isla-and-co-midtown')

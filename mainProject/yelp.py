@@ -22,8 +22,11 @@ class Yelp:
     current_time = datetime.now()
     rounded_time = current_time + timedelta(minutes=30 - current_time.minute % 30)
     rounded_time = rounded_time.replace(second=0, microsecond=0).strftime("%I:%M %p").lstrip("0").lower()
-    
-    def run(self,path,time=rounded_time,day=day,guest=1,month_year=monthYear):
+    if rounded_time.endswith('am'):
+        rounded_time = rounded_time[:-2] + 'pm'
+
+        
+    def run(self,path,time=rounded_time,day=day,guest=3,month_year=monthYear):
         driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         driver.get(path)
         driver.maximize_window()

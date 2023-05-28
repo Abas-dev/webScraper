@@ -25,7 +25,7 @@ class Sevenrooms:
 
     driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
 
-    def run(self,path,time=rounded_time,day=day,guest=1,month_year=monthYear):
+    def run(self,path,time=rounded_time,day=day,guest=3,month_year=monthYear):
         
         self.driver.get(path)
 

@@ -22,7 +22,7 @@ class Resy:
 
     driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
     
-    def run(self,path,guest=1,month_year=monthYear,month_day_year=monthDayYear):
+    def run(self,path,guest=3,month_year=monthYear,month_day_year=monthDayYear):
         
         self.driver.get(path)
 

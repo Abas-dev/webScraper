@@ -25,7 +25,7 @@ class Opentable:
 
     
 
-    def run(self,path,time=rounded_time,month_year=monthYear,day=day,guest=1):
+    def run(self,path,time=rounded_time,month_year=monthYear,day=day,guest=3):
         driver = webdriver.Chrome(service=Service(executable_path=ChromeDriverManager().install()))
         driver.get(path)
         driver.maximize_window()
@@ -96,7 +96,11 @@ class Opentable:
             else:
                 self.theDay = self.theDay + 1 
                 day = str(self.theDay)
-                self.run(day=day,path=path,time=time)
-                driver.refresh()
+                
+                if self.rounded_time.endswith('am'):
+                    self.rounded_time = self.rounded_time[:-2] + 'pm'
+                    
+                    self.run(day=day,path=path,time=self.rounded_time)
+                # driver.refresh()
                     
             sleep(5)

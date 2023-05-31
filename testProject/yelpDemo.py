@@ -116,3 +116,6 @@ class Yelp:
             sleep(3)
 
 
+h = Yelp()
+
+h.run(path='https://www.yelp.com/reservations/blue-india-atlanta')

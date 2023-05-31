@@ -127,4 +127,5 @@ class Opentable:
             sleep(5)
 
 
-
+opentable = Opentable()
+opentable.run('https://www.opentable.com/restref/client/?rid=97249',time='2:00 pm')
